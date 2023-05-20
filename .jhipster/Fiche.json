@@ -1,0 +1,41 @@
+{
+  "changelogDate": "20230520141053",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "homocystinurie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "leucinose",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tyrosinemie",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateMaj",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "activite",
+      "fieldType": "eactivite",
+      "fieldValues": "NP,NON,NA,OUI"
+    },
+    {
+      "fieldName": "travail",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "scolarise",
+      "fieldType": "escolarise",
+      "fieldValues": "NON,ECOLE_NORMAL,ECOLE_INTEGRATION,CENTRE_SPECIALISE,AUTRE"
+    }
+  ],
+  "name": "Fiche",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="FicheHeading">
+    <span>Fiches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fiche"
+        [routerLink]="['/fiche/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Fiche </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fiches?.length === 0">
+    <span>No Fiches found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="fiches && fiches.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="homocystinurie">
+            <div class="d-flex">
+              <span>Homocystinurie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="leucinose">
+            <div class="d-flex">
+              <span>Leucinose</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tyrosinemie">
+            <div class="d-flex">
+              <span>Tyrosinemie</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateMaj">
+            <div class="d-flex">
+              <span>Date Maj</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="activite">
+            <div class="d-flex">
+              <span>Activite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="travail">
+            <div class="d-flex">
+              <span>Travail</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="scolarise">
+            <div class="d-flex">
+              <span>Scolarise</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fiche of fiches; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/fiche', fiche.id, 'view']">{{ fiche.id }}</a>
+          </td>
+          <td>{{ fiche.homocystinurie }}</td>
+          <td>{{ fiche.leucinose }}</td>
+          <td>{{ fiche.tyrosinemie }}</td>
+          <td>{{ fiche.dateMaj | formatMediumDate }}</td>
+          <td>{{ fiche.activite }}</td>
+          <td>{{ fiche.travail }}</td>
+          <td>{{ fiche.scolarise }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/fiche', fiche.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/fiche', fiche.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(fiche)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

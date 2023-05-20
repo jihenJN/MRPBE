@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fiche">
+      <h2 data-cy="ficheDetailsHeading"><span>Fiche</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ fiche.id }}</span>
+        </dd>
+        <dt><span>Homocystinurie</span></dt>
+        <dd>
+          <span>{{ fiche.homocystinurie }}</span>
+        </dd>
+        <dt><span>Leucinose</span></dt>
+        <dd>
+          <span>{{ fiche.leucinose }}</span>
+        </dd>
+        <dt><span>Tyrosinemie</span></dt>
+        <dd>
+          <span>{{ fiche.tyrosinemie }}</span>
+        </dd>
+        <dt><span>Date Maj</span></dt>
+        <dd>
+          <span>{{ fiche.dateMaj | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Activite</span></dt>
+        <dd>
+          <span>{{ fiche.activite }}</span>
+        </dd>
+        <dt><span>Travail</span></dt>
+        <dd>
+          <span>{{ fiche.travail }}</span>
+        </dd>
+        <dt><span>Scolarise</span></dt>
+        <dd>
+          <span>{{ fiche.scolarise }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fiche', fiche.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

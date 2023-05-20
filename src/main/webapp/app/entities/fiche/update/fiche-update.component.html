@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fiche-heading" data-cy="FicheCreateUpdateHeading">Create or edit a Fiche</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_homocystinurie">Homocystinurie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="homocystinurie"
+            id="field_homocystinurie"
+            data-cy="homocystinurie"
+            formControlName="homocystinurie"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_leucinose">Leucinose</label>
+          <input type="checkbox" class="form-check" name="leucinose" id="field_leucinose" data-cy="leucinose" formControlName="leucinose" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_tyrosinemie">Tyrosinemie</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="tyrosinemie"
+            id="field_tyrosinemie"
+            data-cy="tyrosinemie"
+            formControlName="tyrosinemie"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateMaj">Date Maj</label>
+          <div class="input-group">
+            <input
+              id="field_dateMaj"
+              data-cy="dateMaj"
+              type="text"
+              class="form-control"
+              name="dateMaj"
+              ngbDatepicker
+              #dateMajDp="ngbDatepicker"
+              formControlName="dateMaj"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateMajDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_activite">Activite</label>
+          <select class="form-control" name="activite" formControlName="activite" id="field_activite" data-cy="activite">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let eactivite of eactiviteValues" [value]="eactivite">{{ eactivite }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_travail">Travail</label>
+          <input type="checkbox" class="form-check" name="travail" id="field_travail" data-cy="travail" formControlName="travail" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_scolarise">Scolarise</label>
+          <select class="form-control" name="scolarise" formControlName="scolarise" id="field_scolarise" data-cy="scolarise">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let escolarise of escolariseValues" [value]="escolarise">{{ escolarise }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
